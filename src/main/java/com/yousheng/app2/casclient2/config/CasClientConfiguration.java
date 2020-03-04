@@ -25,24 +25,6 @@ public class CasClientConfiguration {
 
     private final CasClientConfigurationProperties configProps;
 
-    /**
-     * 配置登出过滤器
-     * @return   FilterRegistrationBean
-//     */
-//    @Bean
-//    public FilterRegistrationBean filterSingleRegistration() {
-//        final FilterRegistrationBean registration = new FilterRegistrationBean();
-//        registration.setFilter(new SingleSignOutFilter());
-//        // 设定匹配的路径
-//        registration.addUrlPatterns("/*");
-//        Map<String,String> initParameters = new HashMap<>(16);
-//        initParameters.put("casServerUrlPrefix", configProps.getServerUrlPrefix());
-//        registration.setInitParameters(initParameters);
-//        // 设定加载的顺序
-//        registration.setOrder(1);
-//        return registration;
-//    }
-
     @Bean
     public FilterRegistrationBean singleSignOutFilterBean(){
         final FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
@@ -57,7 +39,6 @@ public class CasClientConfiguration {
         System.out.println("================================singleFilter执行");
         return filterRegistrationBean;
     }
-
 
     @Bean
     public ServletListenerRegistrationBean<SingleSignOutHttpSessionListener> singleSignOutHttpSessionListenerBean() {
@@ -91,9 +72,4 @@ public class CasClientConfiguration {
         registration.setOrder(1);
         return registration;
     }
-
-
-
-
-
 }

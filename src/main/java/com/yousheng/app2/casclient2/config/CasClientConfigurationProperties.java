@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
  * @time：14:07
  */
 @Data
-@ConfigurationProperties(prefix = "cas", ignoreUnknownFields = false)
+@ConfigurationProperties(prefix = "cas")
 public class CasClientConfigurationProperties {
 
     /**
