@@ -1,0 +1,32 @@
+package com.yousheng.app2.casclient2.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+/**
+ * @author ：lq
+ * @date ：2020/3/4
+ * @time：16:05
+ */
+@Configuration
+@EnableWebMvc
+public class CorsConfig implements WebMvcConfigurer {
+
+    @Override
+    @Order(0)
+    public void addCorsMappings(CorsRegistry registry) {
+        //设置允许跨域的路径
+        registry.addMapping("/**")
+                //设置允许跨域请求的域名
+                .allowedOrigins("*")
+                //这里：是否允许证书 不再默认开启
+                .allowCredentials(true)
+                //设置允许的方法
+                .allowedMethods("*")
+                //跨域允许时间
+                .maxAge(3600);
+    }
+}
