@@ -1,5 +1,6 @@
 package com.yousheng.app2.casclient2.component;
 
+import com.yousheng.app2.casclient2.config.CasClientConfigurationProperties;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.ConfigAttribute;
@@ -22,6 +23,8 @@ import java.util.*;
 @AllArgsConstructor
 @Slf4j
 public class SecurityMetaDataSource implements FilterInvocationSecurityMetadataSource{
+
+
 
     private LinkedHashMap<String,Collection<ConfigAttribute>> metaData;
 

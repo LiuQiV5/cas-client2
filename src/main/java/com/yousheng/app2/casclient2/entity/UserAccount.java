@@ -18,25 +18,58 @@ import java.util.*;
 @Entity
 @Table(name = "user_account", schema = "changlebase")
 public class UserAccount implements UserDetails,Serializable {
-    private String guid;
-    private String pwd;
-    private String seqno;
-    private String cardid;
-    private String name;
-    private String tel;
-    private String operdate;
-    private String email;
-    private String accounttype;
-    private String newaccount;
-    private String account;
-    private String type;
-    private Date timeStamp;
-
-    @Transient
-    List<GrantedAuthority> grantedAuthorities=new ArrayList<>();
-
     @Id
     @Column(name = "GUID")
+    private String guid;
+
+    @Basic
+    @Column(name = "PWD")
+    private String pwd;
+
+    @Basic
+    @Column(name = "SEQNO")
+    private String seqno;
+
+    @Basic
+    @Column(name = "CARDID")
+    private String cardid;
+
+    @Basic
+    @Column(name = "NAME")
+    private String name;
+
+    @Basic
+    @Column(name = "TEL")
+    private String tel;
+
+    @Basic
+    @Column(name = "OPERDATE")
+    private String operdate;
+
+    @Basic
+    @Column(name = "EMAIL")
+    private String email;
+
+    @Basic
+    @Column(name = "ACCOUNTTYPE")
+    private String accounttype;
+
+    @Basic
+    @Column(name = "NEWACCOUNT")
+    private String newaccount;
+
+    @Basic
+    @Column(name = "ACCOUNT")
+    private String account;
+
+    @Basic
+    @Column(name = "TYPE")
+    private String type;
+
+    @Basic
+    @Column(name = "TIME_STAMP")
+    private Date timeStamp;
+
     public String getGuid() {
         return guid;
     }
@@ -45,8 +78,6 @@ public class UserAccount implements UserDetails,Serializable {
         this.guid = guid;
     }
 
-    @Basic
-    @Column(name = "PWD")
     public String getPwd() {
         return pwd;
     }
@@ -55,8 +86,6 @@ public class UserAccount implements UserDetails,Serializable {
         this.pwd = pwd;
     }
 
-    @Basic
-    @Column(name = "SEQNO")
     public String getSeqno() {
         return seqno;
     }
@@ -65,8 +94,6 @@ public class UserAccount implements UserDetails,Serializable {
         this.seqno = seqno;
     }
 
-    @Basic
-    @Column(name = "CARDID")
     public String getCardid() {
         return cardid;
     }
@@ -75,8 +102,6 @@ public class UserAccount implements UserDetails,Serializable {
         this.cardid = cardid;
     }
 
-    @Basic
-    @Column(name = "NAME")
     public String getName() {
         return name;
     }
@@ -85,8 +110,6 @@ public class UserAccount implements UserDetails,Serializable {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "TEL")
     public String getTel() {
         return tel;
     }
@@ -95,8 +118,6 @@ public class UserAccount implements UserDetails,Serializable {
         this.tel = tel;
     }
 
-    @Basic
-    @Column(name = "OPERDATE")
     public String getOperdate() {
         return operdate;
     }
@@ -105,8 +126,6 @@ public class UserAccount implements UserDetails,Serializable {
         this.operdate = operdate;
     }
 
-    @Basic
-    @Column(name = "EMAIL")
     public String getEmail() {
         return email;
     }
@@ -115,8 +134,6 @@ public class UserAccount implements UserDetails,Serializable {
         this.email = email;
     }
 
-    @Basic
-    @Column(name = "ACCOUNTTYPE")
     public String getAccounttype() {
         return accounttype;
     }
@@ -125,8 +142,6 @@ public class UserAccount implements UserDetails,Serializable {
         this.accounttype = accounttype;
     }
 
-    @Basic
-    @Column(name = "NEWACCOUNT")
     public String getNewaccount() {
         return newaccount;
     }
@@ -135,8 +150,6 @@ public class UserAccount implements UserDetails,Serializable {
         this.newaccount = newaccount;
     }
 
-    @Basic
-    @Column(name = "ACCOUNT")
     public String getAccount() {
         return account;
     }
@@ -145,8 +158,6 @@ public class UserAccount implements UserDetails,Serializable {
         this.account = account;
     }
 
-    @Basic
-    @Column(name = "TYPE")
     public String getType() {
         return type;
     }
@@ -155,8 +166,6 @@ public class UserAccount implements UserDetails,Serializable {
         this.type = type;
     }
 
-    @Basic
-    @Column(name = "TIME_STAMP")
     public Date getTimeStamp() {
         return timeStamp;
     }
@@ -195,6 +204,9 @@ public class UserAccount implements UserDetails,Serializable {
         return Objects.hash(guid, pwd, seqno, cardid, name, tel, operdate, email, accounttype, newaccount, account, type, timeStamp);
     }
 
+    @Transient
+    List<GrantedAuthority> grantedAuthorities=new ArrayList<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (grantedAuthorities.size()==0){
@@ -225,7 +237,6 @@ public class UserAccount implements UserDetails,Serializable {
     public boolean isAccountNonExpired() {
         return true;
     }
-
 
     @Override
     public boolean isAccountNonLocked() {

@@ -18,58 +18,58 @@ import java.util.Map;
  * @date ：2020/3/3
  * @time：14:03
  */
-@Configuration
-@EnableConfigurationProperties(CasClientConfigurationProperties.class)
-@AllArgsConstructor
-public class CasClientConfiguration {
-
-    private final CasClientConfigurationProperties configProps;
-
-    @Bean
-    public FilterRegistrationBean singleSignOutFilterBean(){
-        final FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
-        filterRegistrationBean.setFilter(new SingleSignOutFilter());
-        filterRegistrationBean.setEnabled(true);
-        filterRegistrationBean.addUrlPatterns("/*");
-        Map<String,String> initParameters = new HashMap<>(16);
-        initParameters.put("casServerUrlPrefix", configProps.getServerUrlPrefix());
-        filterRegistrationBean.setInitParameters(initParameters);
-        filterRegistrationBean.setOrder(1);
-        filterRegistrationBean.setName("singleFilter");
-        System.out.println("================================singleFilter执行");
-        return filterRegistrationBean;
-    }
-
-    @Bean
-    public ServletListenerRegistrationBean<SingleSignOutHttpSessionListener> singleSignOutHttpSessionListenerBean() {
-        ServletListenerRegistrationBean<SingleSignOutHttpSessionListener> listenerRegistrationBean = new ServletListenerRegistrationBean<>();
-        listenerRegistrationBean.setEnabled(true);
-        listenerRegistrationBean.setListener(new SingleSignOutHttpSessionListener());
-        listenerRegistrationBean.setOrder(3);
-        System.out.println("================================singleListener执行");
-        return listenerRegistrationBean;
-    }
-
-    /**
-     * description:授权过滤器
-     * @param: []
-     * @return: org.springframework.boot.web.servlet.FilterRegistrationBean
-     */
-    @Bean
-    public FilterRegistrationBean filterAuthenticationRegistration() {
-        FilterRegistrationBean registration = new FilterRegistrationBean();
-        registration.setFilter(new AuthenticationFilter());
-        // 设定匹配的路径
-        registration.addUrlPatterns("/*");
-        Map<String,String>  initParameters = new HashMap<>(16);
-        initParameters.put("casServerLoginUrl", configProps.getServerLoginUrl());
-        initParameters.put("serverName", configProps.getClientHostUrl());
-        //忽略/logout的路径
-        initParameters.put("ignorePattern", "/logout2/*");
-
-        registration.setInitParameters(initParameters);
-        // 设定加载的顺序
-        registration.setOrder(1);
-        return registration;
-    }
-}
+//@Configuration
+//@EnableConfigurationProperties(CasClientConfigurationProperties.class)
+//@AllArgsConstructor
+//public class CasClientConfiguration {
+//
+//    private final CasClientConfigurationProperties configProps;
+//
+//    @Bean
+//    public FilterRegistrationBean singleSignOutFilterBean(){
+//        final FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+//        filterRegistrationBean.setFilter(new SingleSignOutFilter());
+//        filterRegistrationBean.setEnabled(true);
+//        filterRegistrationBean.addUrlPatterns("/*");
+//        Map<String,String> initParameters = new HashMap<>(16);
+//        initParameters.put("casServerUrlPrefix", configProps.getServerUrlPrefix());
+//        filterRegistrationBean.setInitParameters(initParameters);
+//        filterRegistrationBean.setOrder(1);
+//        filterRegistrationBean.setName("singleFilter");
+//        System.out.println("================================singleFilter执行");
+//        return filterRegistrationBean;
+//    }
+//
+//    @Bean
+//    public ServletListenerRegistrationBean<SingleSignOutHttpSessionListener> singleSignOutHttpSessionListenerBean() {
+//        ServletListenerRegistrationBean<SingleSignOutHttpSessionListener> listenerRegistrationBean = new ServletListenerRegistrationBean<>();
+//        listenerRegistrationBean.setEnabled(true);
+//        listenerRegistrationBean.setListener(new SingleSignOutHttpSessionListener());
+//        listenerRegistrationBean.setOrder(3);
+//        System.out.println("================================singleListener执行");
+//        return listenerRegistrationBean;
+//    }
+//
+//    /**
+//     * description:授权过滤器
+//     * @param: []
+//     * @return: org.springframework.boot.web.servlet.FilterRegistrationBean
+//     */
+//    @Bean
+//    public FilterRegistrationBean filterAuthenticationRegistration() {
+//        FilterRegistrationBean registration = new FilterRegistrationBean();
+//        registration.setFilter(new AuthenticationFilter());
+//        // 设定匹配的路径
+//        registration.addUrlPatterns("/*");
+//        Map<String,String>  initParameters = new HashMap<>(16);
+//        initParameters.put("casServerLoginUrl", configProps.getServerLoginUrl());
+//        initParameters.put("serverName", configProps.getClientHostUrl());
+//        //忽略/logout的路径
+//        initParameters.put("ignorePattern", "/logout2/*");
+//
+//        registration.setInitParameters(initParameters);
+//        // 设定加载的顺序
+//        registration.setOrder(1);
+//        return registration;
+//    }
+//}
