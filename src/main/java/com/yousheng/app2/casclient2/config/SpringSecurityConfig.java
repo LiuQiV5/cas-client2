@@ -24,6 +24,7 @@ import org.springframework.security.cas.authentication.CasAuthenticationProvider
 import org.springframework.security.cas.web.CasAuthenticationEntryPoint;
 import org.springframework.security.cas.web.CasAuthenticationFilter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -48,6 +49,7 @@ import java.util.Map;
 @AllArgsConstructor
 @Slf4j
 @EnableConfigurationProperties(CasClientConfigurationProperties.class)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class  SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 
     private final CasClientConfigurationProperties configProps;
@@ -107,8 +109,8 @@ public class  SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/js/**","/css/**","/img/**","/*.ico","/login.html",
-                "/error","/login.do","/api/user/info");
+        web.ignoring().antMatchers("/js/**","/css/**","/img/**","/*.ico",
+                "/error","/api/user/info");
         //web.ignoring().antMatchers("/js/**","/css/**","/img/**","/*.ico",,"/home");
         //web.ignoring().antMatchers("/**");
 //        super.configure(web);
@@ -221,7 +223,7 @@ public class  SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 
     public LogoutFilter casLogoutFilter(){
         LogoutFilter logoutFilter = new LogoutFilter(configProps.getServerUrlPrefix()+"/logout?service="+configProps.getClientHostUrl(), new SecurityContextLogoutHandler());
-        logoutFilter.setFilterProcessesUrl("/logout2");
+        logoutFilter.setFilterProcessesUrl("/logout");
         return logoutFilter;
     }
 

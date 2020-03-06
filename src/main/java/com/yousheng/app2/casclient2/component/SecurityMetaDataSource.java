@@ -24,8 +24,6 @@ import java.util.*;
 @Slf4j
 public class SecurityMetaDataSource implements FilterInvocationSecurityMetadataSource{
 
-
-
     private LinkedHashMap<String,Collection<ConfigAttribute>> metaData;
 
     @PostConstruct
